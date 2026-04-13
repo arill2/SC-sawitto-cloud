@@ -99,21 +99,11 @@ function parseBMKGResponse(json, id) {
     }
 
     const allForecasts = cuacaBlocks.flat();
+    const withDate = allForecasts.filter(f => f.local_datetime);
     const now = new Date();
 
-    let nearest = allForecasts[0];
-    let minDiff = Infinity;
-
-    for (const forecast of allForecasts) {
-      if (forecast.local_datetime) {
-        const forecastTime = new Date(forecast.local_datetime);
-        const diff = Math.abs(forecastTime - now);
-        if (diff < minDiff) {
-          minDiff = diff;
-          nearest = forecast;
-        }
-      }
-    }
+    // Gunakan data paling baru (timestamp terbesar) sebagai kondisi utama wilayah.
+    let nearest = withDate.sort((a, b) => new Date(b.local_datetime) - new Date(a.local_datetime))[0] || allForecasts[0];
 
     if (!nearest) return getDefaultWeatherData(id);
 

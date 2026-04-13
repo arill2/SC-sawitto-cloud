@@ -342,6 +342,8 @@
   <script>
     // Aktifkan log debug hanya saat pengembangan lokal
     window.SC_DEBUG = false;
+    // Auto refresh dimatikan: data update saat user klik tombol refresh
+    window.SC_AUTO_REFRESH = false;
     // Endpoint proxy AI (Vercel Function)
     window.SC_GROQ_PROXY_ENDPOINT = '/api/groq-stream';
     // Opsional: true untuk memaksa direct client mode (tidak direkomendasikan di production publik)

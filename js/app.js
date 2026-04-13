@@ -4,6 +4,7 @@
  */
 var SC_DEBUG = window.SC_DEBUG === true;
 var debugLog = (...args) => { if (SC_DEBUG) console.log(...args); };
+const SC_AUTO_REFRESH = window.SC_AUTO_REFRESH === true;
 const AUTO_REFRESH_INTERVAL = 30 * 60 * 1000; // 30 menit
 let refreshTimer = null;
 let kabupatenConfig = [];
@@ -32,8 +33,8 @@ async function initApp() {
   // Minta izin notifikasi
   await window.NotificationService.requestNotificationPermission();
 
-  // Fetch data pertama kali
-  await refreshData();
+  // Render ringan saat pertama load (tanpa fetch BMKG) agar tidak lag
+  renderInitialViewWithoutFetch();
 
   // Setup auto-refresh
   setupAutoRefresh();
@@ -42,6 +43,34 @@ async function initApp() {
   setupUIEventListeners();
 
   debugLog('[SC] ✅ Inisialisasi selesai');
+}
+
+/**
+ * Inisialisasi tampilan awal tanpa fetch BMKG.
+ * Data cuaca baru diambil saat user klik tombol Refresh.
+ */
+function renderInitialViewWithoutFetch() {
+  currentWeatherMap = new Map();
+  currentRiskMap = new Map();
+  currentAllRiskData = [];
+
+  for (const kab of kabupatenConfig) {
+    const weather = window.BMKGService.getDefaultWeatherData(kab.id);
+    const risk = window.ScoringService.getFloodRisk(weather);
+    currentWeatherMap.set(kab.id, weather);
+    currentRiskMap.set(kab.id, risk);
+    currentAllRiskData.push({ kab, weather, risk });
+  }
+
+  const stats = window.ScoringService.calculateSummaryStats(currentAllRiskData);
+  renderDashboard(stats);
+  renderStatusCards();
+  renderMap();
+  renderRainfallChart();
+  updateHeader();
+  updateAlertBanner(stats);
+  updateLastRefreshTime();
+  showLoadingOverlay(false);
 }
 
 /**
@@ -297,12 +326,14 @@ function updateAlertBanner(stats) {
 function renderRainfallChart() {
   const canvas = document.getElementById('rainfall-chart');
   if (!canvas || typeof Chart === 'undefined') return;
+  // Pastikan canvas tidak tumbuh tak terkendali saat update berulang.
+  canvas.style.height = window.innerWidth <= 768 ? '180px' : '210px';
 
-  // Ambil data dari 5 wilayah dengan curah hujan tertinggi
+  // Ambil data dari wilayah dengan curah hujan tertinggi
   const topRainfall = currentAllRiskData
     .filter(d => d.weather.success)
     .sort((a, b) => b.weather.tp - a.weather.tp)
-    .slice(0, 8);
+    .slice(0, 6);
 
   const labels = topRainfall.map(d => d.kab.name.replace('Kab. ', '').replace('Kota ', ''));
   const rainfallData = topRainfall.map(d => d.weather.tp || 0);
@@ -327,6 +358,8 @@ function renderRainfallChart() {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        animation: false,
+        normalized: true,
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -595,6 +628,12 @@ function updateHeader() {
 function updateLastRefreshTime() {
   const el = document.getElementById('next-refresh');
   if (el) {
+    if (!SC_AUTO_REFRESH) {
+      el.textContent = 'Update saat user klik Refresh';
+      clearInterval(window._countdownTimer);
+      return;
+    }
+
     let countdown = 30 * 60;
     clearInterval(window._countdownTimer);
     window._countdownTimer = setInterval(() => {
@@ -704,6 +743,7 @@ function showToast(message, type = 'info') {
 
 function setupAutoRefresh() {
   clearInterval(refreshTimer);
+  if (!SC_AUTO_REFRESH) return;
   refreshTimer = setInterval(async () => {
     debugLog('[SC] Auto-refresh dimulai...');
     await refreshData();

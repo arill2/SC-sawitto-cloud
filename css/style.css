@@ -525,6 +525,8 @@ input { font-family: var(--font-main); }
   border-radius: var(--radius-md);
   padding: 16px;
   margin-top: 1rem;
+  height: 260px;
+  min-height: 260px;
 }
 
 .chart-wrapper h3 {
@@ -534,7 +536,12 @@ input { font-family: var(--font-main); }
   margin-bottom: 12px;
 }
 
-#rainfall-chart { height: 180px; }
+#rainfall-chart {
+  display: block;
+  width: 100% !important;
+  height: 210px !important;
+  max-height: 210px;
+}
 
 /* ── Right Panel (AI + Info) ──────────────────────────────── */
 .right-panel {
@@ -1312,6 +1319,15 @@ footer a { color: var(--brand-cyan-400); }
 }
 
 @media (max-width: 768px) {
+  .chart-wrapper {
+    height: 230px;
+    min-height: 230px;
+  }
+  #rainfall-chart {
+    height: 180px !important;
+    max-height: 180px;
+  }
+
   :root { --header-height: 80px; }
   
   .sc-main { padding: 0.75rem; }
@@ -1361,6 +1377,15 @@ footer a { color: var(--brand-cyan-400); }
   .ds-value { font-size: 0.9rem; }
   
   #settings-panel { width: 100%; top: 0; z-index: 10000; }
+}
+
+/* Perf mode: kurangi animasi di device low-power / prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @media (max-width: 400px) {
