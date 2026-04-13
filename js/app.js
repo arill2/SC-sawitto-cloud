@@ -2,8 +2,8 @@
  * app.js — Logic utama Sawitto Cloud & auto-refresh
  * Orchestrator semua module: BMKG, Scoring, Map, Groq, Notification
  */
-const SC_DEBUG = window.SC_DEBUG === true;
-const debugLog = (...args) => { if (SC_DEBUG) console.log(...args); };
+var SC_DEBUG = window.SC_DEBUG === true;
+var debugLog = (...args) => { if (SC_DEBUG) console.log(...args); };
 const AUTO_REFRESH_INTERVAL = 30 * 60 * 1000; // 30 menit
 let refreshTimer = null;
 let kabupatenConfig = [];

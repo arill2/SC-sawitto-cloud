@@ -2,8 +2,8 @@
  * map.js — Peta interaktif Sulawesi Selatan menggunakan Leaflet.js
  * Color-coded berdasarkan risiko banjir per kabupaten/kota
  */
-const SC_DEBUG = window.SC_DEBUG === true;
-const debugLog = (...args) => { if (SC_DEBUG) console.log(...args); };
+var SC_DEBUG = window.SC_DEBUG === true;
+var debugLog = (...args) => { if (SC_DEBUG) console.log(...args); };
 
 let map = null;
 let kabupatenLayers = new Map(); // id → Leaflet layer

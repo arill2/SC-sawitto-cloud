@@ -4,8 +4,8 @@
  */
 
 const BMKG_BASE_URL = 'https://api.bmkg.go.id/publik/prakiraan-cuaca';
-const SC_DEBUG = window.SC_DEBUG === true;
-const debugLog = (...args) => { if (SC_DEBUG) console.log(...args); };
+var SC_DEBUG = window.SC_DEBUG === true;
+var debugLog = (...args) => { if (SC_DEBUG) console.log(...args); };
 
 /**
  * Fetch data cuaca untuk satu kabupaten/kota dengan strategi discovery

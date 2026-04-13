@@ -5,8 +5,8 @@
 
 const NOTIFICATION_COOLDOWN = 2 * 60 * 60 * 1000; // 2 jam dalam ms
 const STORAGE_KEY = 'sc_notification_log';
-const SC_DEBUG = window.SC_DEBUG === true;
-const debugLog = (...args) => { if (SC_DEBUG) console.log(...args); };
+var SC_DEBUG = window.SC_DEBUG === true;
+var debugLog = (...args) => { if (SC_DEBUG) console.log(...args); };
 
 /**
  * Minta izin notifikasi dari user
