@@ -1,0 +1,122 @@
+[
+  {
+    "id": "73.01",
+    "name": "Kab. Kepulauan Selayar",
+    "adm4_valid": "73.01.01.1001"
+  },
+  {
+    "id": "73.02",
+    "name": "Kab. Bulukumba",
+    "adm4_valid": "73.02.01.1001"
+  },
+  {
+    "id": "73.03",
+    "name": "Kab. Bantaeng",
+    "adm4_valid": "73.03.01.1001"
+  },
+  {
+    "id": "73.04",
+    "name": "Kab. Jeneponto",
+    "adm4_valid": "73.04.01.1001"
+  },
+  {
+    "id": "73.05",
+    "name": "Kab. Takalar",
+    "adm4_valid": "73.05.01.1001"
+  },
+  {
+    "id": "73.06",
+    "name": "Kab. Gowa",
+    "adm4_valid": "73.06.01.1001"
+  },
+  {
+    "id": "73.07",
+    "name": "Kab. Sinjai",
+    "adm4_valid": "73.07.01.1001"
+  },
+  {
+    "id": "73.08",
+    "name": "Kab. Bone",
+    "adm4_valid": "73.08.01.1001"
+  },
+  {
+    "id": "73.09",
+    "name": "Kab. Maros",
+    "adm4_valid": "73.09.01.1001"
+  },
+  {
+    "id": "73.10",
+    "name": "Kab. Pangkajene Kepulauan",
+    "adm4_valid": "73.10.01.1001"
+  },
+  {
+    "id": "73.11",
+    "name": "Kab. Barru",
+    "adm4_valid": "73.11.01.1001"
+  },
+  {
+    "id": "73.12",
+    "name": "Kab. Soppeng",
+    "adm4_valid": "73.12.01.1001"
+  },
+  {
+    "id": "73.13",
+    "name": "Kab. Wajo",
+    "adm4_valid": "73.13.01.1001"
+  },
+  {
+    "id": "73.14",
+    "name": "Kab. Sidenreng Rappang",
+    "adm4_valid": "73.14.01.1001"
+  },
+  {
+    "id": "73.15",
+    "name": "Kab. Pinrang",
+    "adm4_valid": "73.15.01.1001"
+  },
+  {
+    "id": "73.16",
+    "name": "Kab. Enrekang",
+    "adm4_valid": "73.16.01.1001"
+  },
+  {
+    "id": "73.17",
+    "name": "Kab. Luwu",
+    "adm4_valid": "73.17.02.2001"
+  },
+  {
+    "id": "73.18",
+    "name": "Kab. Tana Toraja",
+    "adm4_valid": "73.18.03.2001"
+  },
+  {
+    "id": "73.19",
+    "name": "Kab. Luwu Utara",
+    "adm4_valid": "73.22.01.2001"
+  },
+  {
+    "id": "73.20",
+    "name": "Kab. Luwu Timur",
+    "adm4_valid": "73.24.01.2001"
+  },
+  {
+    "id": "73.21",
+    "name": "Kab. Toraja Utara",
+    "adm4_valid": "73.26.01.1001"
+  },
+  {
+    "id": "73.71",
+    "name": "Kota Makassar",
+    "adm4_valid": "73.71.01.1001"
+  },
+  {
+    "id": "73.72",
+    "name": "Kota Parepare",
+    "adm4_valid": "73.72.02.1001"
+  },
+  {
+    "id": "73.73",
+    "name": "Kota Palopo",
+    "adm4_valid": "73.73.01.1001"
+  }
+]
