@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test Waspada/Bahaya - Sawitto Cloud</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body { background: #020617; color: #e2e8f0; }
+    .test-wrap { max-width: 960px; margin: 1.5rem auto; padding: 0 1rem; }
+    .test-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .test-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .test-row > * { flex: 1 1 180px; }
+    .test-input, .test-select {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 8px;
+      color: #e2e8f0;
+      padding: 8px 10px;
+    }
+    .test-btn {
+      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+      border: none;
+      color: #fff;
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .test-btn.warn { background: linear-gradient(135deg, #f97316, #c2410c); }
+    .test-btn.danger { background: linear-gradient(135deg, #ef4444, #991b1b); }
+    .test-preview {
+      margin-top: 10px;
+      border-left: 4px solid #334155;
+      padding: 10px 12px;
+      background: rgba(15, 23, 42, 0.35);
+      border-radius: 8px;
+    }
+    .ai-box {
+      min-height: 120px;
+      line-height: 1.65;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-wrap">
+    <div class="test-card">
+      <h2 style="margin:0 0 6px;">🧪 Dummy Test Waspada/Bahaya</h2>
+      <p style="margin:0;color:#94a3b8;font-size:0.85rem;">
+        Halaman ini khusus pengujian fitur notifikasi dan AI mitigasi untuk status <strong>WASPADA</strong> / <strong>BAHAYA</strong>.
+      </p>
+      <div class="test-row">
+        <div>
+          <label for="kabName" style="font-size:0.78rem;">Nama Wilayah</label>
+          <input id="kabName" class="test-input" value="Kab. Pinrang" />
+        </div>
+        <div>
+          <label for="kabId" style="font-size:0.78rem;">ID Wilayah</label>
+          <input id="kabId" class="test-input" value="73.15" />
+        </div>
+        <div>
+          <label for="status" style="font-size:0.78rem;">Status</label>
+          <select id="status" class="test-select">
+            <option value="WASPADA">WASPADA</option>
+            <option value="BAHAYA">BAHAYA</option>
+          </select>
+        </div>
+      </div>
+      <div class="test-row">
+        <div>
+          <label for="rainfall" style="font-size:0.78rem;">Curah Hujan (mm)</label>
+          <input id="rainfall" class="test-input" type="number" min="0" step="0.1" value="72.5" />
+        </div>
+        <div>
+          <label for="humidity" style="font-size:0.78rem;">Kelembapan (%)</label>
+          <input id="humidity" class="test-input" type="number" min="0" max="100" value="92" />
+        </div>
+        <div>
+          <label for="wind" style="font-size:0.78rem;">Kecepatan Angin (km/j)</label>
+          <input id="wind" class="test-input" type="number" min="0" value="38" />
+        </div>
+      </div>
+      <div class="test-row">
+        <button id="btn-preview" class="test-btn">Preview Skenario</button>
+        <button id="btn-notif" class="test-btn warn">Test Notifikasi</button>
+        <button id="btn-ai" class="test-btn danger">Test AI Mitigasi</button>
+      </div>
+      <div id="scenario-preview" class="test-preview">Belum ada skenario.</div>
+    </div>
+
+    <div class="test-card">
+      <h3 style="margin:0 0 10px;">🤖 Output AI (Streaming)</h3>
+      <div id="ai-output" class="ai-box">Klik "Test AI Mitigasi" untuk memulai...</div>
+    </div>
+  </div>
+
+  <script>
+    window.SC_DEBUG = false;
+    window.SC_ALLOW_CLIENT_GROQ = false;
+    window.SC_GROQ_PROXY_ENDPOINT = '/api/groq-stream';
+  </script>
+  <script src="js/groq.js"></script>
+  <script src="js/notification.js"></script>
+  <script>
+    function readScenario() {
+      return {
+        kabName: document.getElementById('kabName').value.trim() || 'Kab. Pinrang',
+        kabId: document.getElementById('kabId').value.trim() || '73.15',
+        status: document.getElementById('status').value,
+        tp: Number(document.getElementById('rainfall').value) || 0,
+        hu: Number(document.getElementById('humidity').value) || 0,
+        ws: Number(document.getElementById('wind').value) || 0,
+      };
+    }
+
+    function renderPreview() {
+      const s = readScenario();
+      const weatherDesc = s.status === 'BAHAYA' ? 'Hujan Badai' : 'Hujan Lebat';
+      const color = s.status === 'BAHAYA' ? '#ef4444' : '#f97316';
+      document.getElementById('scenario-preview').innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+          <strong>${s.kabName} (${s.kabId})</strong>
+          <span style="background:${color};padding:3px 8px;border-radius:999px;font-size:0.72rem;font-weight:700;">${s.status}</span>
+        </div>
+        <div style="margin-top:6px;color:#cbd5e1;">
+          🌧️ ${weatherDesc} · ${s.tp.toFixed(1)} mm | 💧 ${s.hu.toFixed(0)}% | 💨 ${s.ws.toFixed(0)} km/j
+        </div>
+      `;
+    }
+
+    async function testNotification() {
+      const s = readScenario();
+      const weatherDesc = s.status === 'BAHAYA' ? 'Hujan Badai' : 'Hujan Lebat';
+      const ok = await window.NotificationService.sendFloodAlert({
+        kabId: s.kabId,
+        kabName: `[TEST] ${s.kabName}`,
+        status: s.status,
+        weather_desc: weatherDesc
+      });
+      alert(ok ? 'Notifikasi test terkirim (cek browser).' : 'Notifikasi tidak terkirim (cek izin/cooldown).');
+    }
+
+    function testAI() {
+      const s = readScenario();
+      const output = document.getElementById('ai-output');
+      const weatherDesc = s.status === 'BAHAYA' ? 'Hujan Badai' : 'Hujan Lebat';
+      output.textContent = 'Menganalisis...';
+
+      window.GroqService.fetchMitigationWithCache(
+        {
+          kabName: s.kabName,
+          status: s.status,
+          weather_desc: weatherDesc,
+          tp: s.tp,
+          hu: s.hu,
+          ws: s.ws
+        },
+        (chunk, fullText) => { output.textContent = fullText + ' |'; },
+        (fullText) => { output.textContent = fullText || '(AI tidak mengembalikan teks)'; },
+        (errMsg) => { output.textContent = `Error AI: ${errMsg}`; }
+      );
+    }
+
+    document.getElementById('btn-preview').addEventListener('click', renderPreview);
+    document.getElementById('btn-notif').addEventListener('click', testNotification);
+    document.getElementById('btn-ai').addEventListener('click', testAI);
+    renderPreview();
+  </script>
+</body>
+</html>

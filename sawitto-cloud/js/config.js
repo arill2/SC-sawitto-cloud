@@ -1,0 +1,37 @@
+/**
+ * config.js — Konfigurasi wilayah Sulawesi Selatan
+ * Dibuat sebagai file JS agar bisa dimuat langsung via file:// protocol (menghindari CORS issue)
+ */
+
+window.SULSEL_CONFIG_DATA = {
+  "province": "Sulawesi Selatan",
+  "code": "73",
+  "center": [-3.6687, 119.9741],
+  "zoom": 7,
+  "kabupaten": [
+    { "id": "73.01", "name": "Kab. Kepulauan Selayar", "adm2": "73.01", "adm4_sample": "73.01.01.1001", "priority": false, "lat": -6.1283, "lng": 120.4570 },
+    { "id": "73.02", "name": "Kab. Bulukumba",          "adm2": "73.02", "adm4_sample": "73.02.01.1001", "priority": false, "lat": -5.3543, "lng": 120.2162 },
+    { "id": "73.03", "name": "Kab. Bantaeng",            "adm2": "73.03", "adm4_sample": "73.03.01.1001", "priority": false, "lat": -5.5277, "lng": 119.9423 },
+    { "id": "73.04", "name": "Kab. Jeneponto",           "adm2": "73.04", "adm4_sample": "73.04.01.1001", "priority": false, "lat": -5.6797, "lng": 119.7418 },
+    { "id": "73.05", "name": "Kab. Takalar",             "adm2": "73.05", "adm4_sample": "73.05.01.1001", "priority": false, "lat": -5.4311, "lng": 119.4423 },
+    { "id": "73.06", "name": "Kab. Gowa",                "adm2": "73.06", "adm4_sample": "73.06.01.1001", "priority": false, "lat": -5.2854, "lng": 119.8079 },
+    { "id": "73.07", "name": "Kab. Sinjai",              "adm2": "73.07", "adm4_sample": "73.07.01.1001", "priority": false, "lat": -5.1263, "lng": 120.2524 },
+    { "id": "73.08", "name": "Kab. Bone",                "adm2": "73.08", "adm4_sample": "73.08.01.1001", "priority": false, "lat": -4.5388, "lng": 120.3368 },
+    { "id": "73.09", "name": "Kab. Maros",               "adm2": "73.09", "adm4_sample": "73.09.01.1001", "priority": false, "lat": -5.0059, "lng": 119.6939 },
+    { "id": "73.10", "name": "Kab. Pangkajene Kepulauan", "adm2": "73.10", "adm4_sample": "73.10.01.1001", "priority": false, "lat": -4.8255, "lng": 119.5307 },
+    { "id": "73.11", "name": "Kab. Barru",               "adm2": "73.11", "adm4_sample": "73.11.01.1001", "priority": false, "lat": -4.4089, "lng": 119.6143 },
+    { "id": "73.12", "name": "Kab. Soppeng",             "adm2": "73.12", "adm4_sample": "73.12.01.1001", "priority": false, "lat": -4.3478, "lng": 119.8936 },
+    { "id": "73.13", "name": "Kab. Wajo",                "adm2": "73.13", "adm4_sample": "73.13.01.1001", "priority": false, "lat": -3.9529, "lng": 120.1929 },
+    { "id": "73.14", "name": "Kab. Sidenreng Rappang",   "adm2": "73.14", "adm4_sample": "73.14.01.1001", "priority": false, "lat": -3.8615, "lng": 119.8361 },
+    { "id": "73.15", "name": "Kab. Pinrang",             "adm2": "73.15", "adm4_sample": "73.15.01.1001", "priority": true,  "lat": -3.7915, "lng": 119.6522 },
+    { "id": "73.16", "name": "Kab. Enrekang",            "adm2": "73.16", "adm4_sample": "73.16.01.1001", "priority": false, "lat": -3.5714, "lng": 119.7887 },
+    { "id": "73.17", "name": "Kab. Luwu",                "adm2": "73.17", "adm4_sample": "73.17.02.2001", "priority": false, "lat": -2.9635, "lng": 120.7741 },
+    { "id": "73.18", "name": "Kab. Tana Toraja",         "adm2": "73.18", "adm4_sample": "73.18.03.2001", "priority": false, "lat": -3.0892, "lng": 119.8195 },
+    { "id": "73.19", "name": "Kab. Luwu Utara",          "adm2": "73.19", "adm2_bmkg": "73.22", "adm4_sample": "73.22.01.2001", "priority": false, "lat": -2.5477, "lng": 120.1938 },
+    { "id": "73.20", "name": "Kab. Luwu Timur",          "adm2": "73.20", "adm2_bmkg": "73.24", "adm4_sample": "73.24.01.2001", "priority": false, "lat": -2.5481, "lng": 121.2898 },
+    { "id": "73.21", "name": "Kab. Toraja Utara",        "adm2": "73.21", "adm2_bmkg": "73.26", "adm4_sample": "73.26.01.1001", "priority": false, "lat": -2.9731, "lng": 119.9200 },
+    { "id": "73.71", "name": "Kota Makassar",           "adm2": "73.71", "adm4_sample": "73.71.01.1001", "priority": false, "lat": -5.1477, "lng": 119.4327 },
+    { "id": "73.72", "name": "Kota Parepare",           "adm2": "73.72", "adm4_sample": "73.72.02.1001", "priority": false, "lat": -4.0135, "lng": 119.6294 },
+    { "id": "73.73", "name": "Kota Palopo",             "adm2": "73.73", "adm4_sample": "73.73.01.1001", "priority": false, "lat": -2.9938, "lng": 120.1947 }
+  ]
+};
