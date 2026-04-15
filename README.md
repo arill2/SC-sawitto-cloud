@@ -100,7 +100,7 @@ API Key tersimpan di `localStorage` browser.
 
 ### Groq AI
 - **Endpoint**: `https://api.groq.com/openai/v1/chat/completions`
-- **Model**: `llama3-70b-8192`
+- **Model**: `llama-3.3-70b-versatile`
 - **Mode**: Streaming real-time
 - **Trigger**: Hanya status WASPADA/BAHAYA
 

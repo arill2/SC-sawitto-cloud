@@ -1,11 +1,11 @@
 /**
  * groq.js — Integrasi Groq AI untuk rekomendasi mitigasi banjir
  * Endpoint: https://api.groq.com/openai/v1/chat/completions
- * Model: llama3-70b-8192
+ * Model: llama-3.3-70b-versatile
  */
 
 const GROQ_ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions';
-const GROQ_MODEL = 'llama3-70b-8192';
+const GROQ_MODEL = 'llama-3.3-70b-versatile';
 const GROQ_PROXY_ENDPOINT = window.SC_GROQ_PROXY_ENDPOINT || null;
 const IS_LOCALHOST = ['localhost', '127.0.0.1'].includes(window.location.hostname);
 const ALLOW_CLIENT_GROQ = window.SC_ALLOW_CLIENT_GROQ === true;
